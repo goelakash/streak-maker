@@ -1,14 +1,28 @@
 #!/usr/bin/env python
 
-import time
+from builtins import str
+import datetime
 import os
+import pexpect
 
-commit_message = "committed on " + time.asctime()
-commits = open("commits.txt","a")
-commits.write(commit_message)
-commits.close()
+commit_message = "Last commit on " + str(datetime.datetime.now().time())
+commits = open("commits.txt","r")
+line  = commits.readline()
 
-os.system("git add commits.txt")
-os.system("git commit -m '"+commit_message+"'")
-os.system("git push origin master")
+credentials = open("credentials","r")
+username = credentials.readline()
+password = credentials.readline()
 
+if line != commit_message:
+
+    commits = open("commits.txt","w")
+    commits.write(commit_message)
+    commits.close()
+
+    os.system("git add .")
+    os.system("git commit -m '"+commit_message+"'")
+    child = pexpect.spawn("git push origin master")
+    child.expect("Username*",async=True)
+    child.sendline(username)
+    child.expect("Password*",async=True)
+    child.sendline(password)
