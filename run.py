@@ -1,4 +1,4 @@
-#!/usr/bin/env ipython
+#!/usr/bin/env python3
 
 from builtins import str
 import datetime
@@ -11,9 +11,9 @@ line  = commits.readline()
 line = line[:-1]
 
 credentials = open("credentials","r")
-username = credentials.readline()
+username = credentials.readline()       # Github username
 username = username[:-1]
-password = credentials.readline()
+password = credentials.readline()       # Github password
 password = password[:-1]
 
 if line != commit_message:
@@ -22,11 +22,12 @@ if line != commit_message:
     commits.close()
 
 pexpect.run("git add .")
-pexpect.run("git commit -m '"+commit_message+" amazing'")
-ch = pexpect.spawn("git push origin master")
-time.sleep(2)
-ch.expect('U*',async=True)
-ch.sendline(username)
-time.sleep(2)
-ch.expect('P*',async=True)
-ch.sendline(password)
+pexpect.run("git commit -m '"+commit_message)
+pexpect.run('git push https://'+username+':'+password+'@github.com/'+username+'/streak-maker.git')
+# ch = pexpect.spawn("git push origin master")
+# time.sleep(2)
+# ch.expect('U*',async=True)
+# ch.sendline(username)
+# time.sleep(2)
+# ch.expect('P*',async=True)
+# ch.sendline(password)
