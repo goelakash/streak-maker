@@ -21,9 +21,9 @@ if line != commit_message:
     commits.write(commit_message)
     commits.close()
 
-    pexpect.run("git add .")
-    pexpect.run("git commit -m '"+commit_message)
-    pexpect.run('git push https://'+username+':'+password+'@github.com/'+username+'/streak-maker.git')
+    os.system("git add .")
+    os.system("git commit -m '"+commit_message)
+    os.system('git push https://'+username+':'+password+'@github.com/'+username+'/streak-maker.git')
 # ch = pexpect.spawn("git push origin master")
 # time.sleep(2)
 # ch.expect('U*',async=True)
