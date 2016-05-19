@@ -5,7 +5,7 @@ import datetime
 import pexpect
 import time
 
-commit_message = "Last commit on " + str(datetime.datetime.now().time())
+commit_message = "Last commit on " + str(datetime.date.today())
 commits = open("commits.txt","r")
 line  = commits.readline()
 line = line[:-1]
