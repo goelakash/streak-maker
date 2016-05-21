@@ -2,8 +2,8 @@
 
 from builtins import str
 import datetime
-import pexpect
 import time
+import os
 
 commit_message = "Last commit on " + str(datetime.date.today())
 commits = open("commits.txt","r")
@@ -22,7 +22,7 @@ if line != commit_message:
     commits.close()
 
     os.system("git add .")
-    os.system("git commit -m '"+commit_message)
+    os.system("git commit -m '"+commit_message+"'")
     os.system('git push https://'+username+':'+password+'@github.com/'+username+'/streak-maker.git')
 # ch = pexpect.spawn("git push origin master")
 # time.sleep(2)
