@@ -14,4 +14,6 @@ crontab -e
 
 Add the following lines to cron jobs file that pops up:
 
-0 * * * * cd /path/to/run.py && ./run.py
+`0 * * * * cd /path/to/run.py && ./run.py`
+
+This means that the script will run at every hour precisely on the 0th minute. You can adjust this to run on a different time accordingly.
